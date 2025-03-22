@@ -1,0 +1,22 @@
+{
+    'semi': true,
+    'printWidth': 80,
+    'tabWidth': 2,
+    'singleQuote': true,
+    'trailingComma': 'es5',
+    'bracketSpacing': true,
+    'jsxSingleQuote': true,
+    'endOfLine': 'auto',
+    'arrowParens': 'always',
+    'quoteProps': 'as-needed',
+    'jsxBracketSameLine': false,
+    'htmlWhitespaceSensitivity': 'strict',
+    'vueIndentScriptAndStyle': true,
+    'embeddedLanguageFormatting': 'off',
+    'proseWrap': 'always',
+    'overrides':
+      [
+        { 'files': '*.css', 'options': { 'parser': 'css' } },
+        { 'files': '*.scss', 'options': { 'parser': 'scss' } },
+      ],
+  }
