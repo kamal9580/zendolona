@@ -1,118 +1,116 @@
-import React from "react";
-import { helpData } from "../../data/helpdata";
-import Image from "next/image";
+import React from 'react';
+import { helpData } from '../../data/helpdata';
+import Image from 'next/image';
 
 const Help = () => {
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className='p-2 max-w-4xl mx-auto'>
+      {/* Logo */}
+      <div className='flex justify-center'>
+        <Image
+          src='/map-logo.svg'
+          alt='Map Logo'
+          width={250}
+          height={250}
+         
+        />
+      </div>
 
-        <div className="flex justify-center ">
+      {/* Title & Description */}
+      <h1 className='text-3xl font-bold mb-4'>{helpData.title}</h1>
+      <p className='text-gray-700 mb-6'>{helpData.description}</p>
 
-          <Image src="/map-logo.svg" 
-          alt="Map Logo"
-           width={250} height={250}
-           className=" "
-      
-       tabIndex={-1} />
-
-       </div>
-      {/* Title */}
-      <h1 className="text-3xl font-bold mb-4">{helpData.title}</h1>
-
-     
-      <p className="text-gray-700 mb-6">{helpData.description}</p>
-
-     
-      <h2 className="text-2xl font-semibold mt-6 mb-2">Contents</h2>
-      <ul className="list-disc list-inside text-gray-600">
+      {/* Contents with Anchor Links */}
+      <h2 className='text-2xl font-semibold mt-6 mb-2'>Contents</h2>
+      <hr className='border-t-4 border-black my-4' />
+      <ul className='list-disc list-inside text-gray-600'>
         {helpData.contents.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index}>
+            <a href={`${item.key}`} className='text-blue-500 hover:underline'>
+              {item.title}
+            </a>
+          </li>
         ))}
       </ul>
 
-      {/* Feature List */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.feature_list.title}</h2>
-        <ul className="list-disc list-inside mt-2 text-gray-600">
-          {helpData.feature_list.features.map((feature, index) => (
-            <li key={index}>{feature}</li>
-          ))}
-        </ul>
-      </section>
+      {/* Sections */}
+      {helpData.sections.map((section, index) => (
+        <section key={index} id={section.key} className='mt-8'>
+          <h2 className='text-2xl font-semibold'>{section.title}</h2>
+          <hr className='border-t-4 border-black my-4' />
+          {section.description && (
+            <p className='text-gray-700 mt-2'>{section.description}</p>
+          )}
+          {section.img && (
+            <div className='flex justify-center mt-4'>
+              <Image src={section.img} alt='Map' width={800} height={800} />
+            </div>
+          )}
+          {section.features && (
+            <ul className='list-disc list-inside mt-2 text-gray-600'>
+              {section.features.map((feature, idx) => (
+                <li key={idx}>{feature}</li>
+              ))}
+            </ul>
+          )}
+          {section.controls && (
+            <ul className='list-disc list-inside mt-2 text-gray-600'>
+              {section.controls.map((control, idx) => (
+                <li key={idx}>{control}</li>
+              ))}
+            </ul>
+          )}
 
-      {/* Opening the Map */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.opening_map.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.opening_map.description}</p>
-      </section>
+          <div className='mt-4 flex flex-row justify-center gap-x-32 w-full'>
+            {section.control && (
+              <p className='font-semibold'>Control: {section.control}</p>
+            )}
 
-      {/* Search */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.search.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.search.description}</p>
-      </section>
+            {section.developers && (
+              <div className='ml-4' w-full>
+                <h3 className='text-xl font-semibold'>Developers</h3>
+                <ul className='list-disc list-inside text-gray-600'>
+                  {section.developers.map((dev, idx) => (
+                    <li key={idx}>{dev}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-      {/* Movement */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.movement.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.movement.description}</p>
-        <ul className="list-disc list-inside mt-2 text-gray-600">
-          {helpData.movement.controls.map((control, index) => (
-            <li key={index}>{control}</li>
-          ))}
-        </ul>
-      </section>
+            {section.mentors && (
+              <div className='ml-4' w-full>
+                <h3 className='text-xl font-semibold'>Mentors</h3>
+                <ul className='list-disc list-inside text-gray-600'>
+                  {section.mentors.map((mentor, idx) => (
+                    <li key={idx}>{mentor}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-      {/* Zooming */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.zooming.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.zooming.description}</p>
-        <p className="font-semibold mt-2">Control: {helpData.zooming.control}</p>
-      </section>
+            {section.testers && (
+              <div className='ml-4' w-full>
+                <h3 className='text-xl font-semibold'>Testers</h3>
+                <ul className='list-disc list-inside text-gray-600'>
+                  {section.testers.map((tester, idx) => (
+                    <li key={idx}>{tester}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
 
-      {/* Inbound Navigation */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.inbound_navigation.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.inbound_navigation.description}</p>
-      </section>
+          {/* Go to Top Button */}
 
-      {/* Adjustable Pointer */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.adjustable_pointer.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.adjustable_pointer.description}</p>
-      </section>
-
-      {/* Distance Finder */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.distance_finder.title}</h2>
-        <p className="text-gray-700 mt-2">{helpData.distance_finder.description}</p>
-      </section>
-
-      {/* Credits */}
-      <section className="mt-8">
-        <h2 className="text-2xl font-semibold">{helpData.credits.title}</h2>
-        
-        <h3 className="text-xl font-semibold mt-4">Developers</h3>
-        <ul className="list-disc list-inside text-gray-600">
-          {helpData.credits.developers.map((dev, index) => (
-            <li key={index}>{dev}</li>
-          ))}
-        </ul>
-
-        <h3 className="text-xl font-semibold mt-4">Mentors</h3>
-        <ul className="list-disc list-inside text-gray-600">
-          {helpData.credits.mentors.map((mentor, index) => (
-            <li key={index}>{mentor}</li>
-          ))}
-        </ul>
-
-        <h3 className="text-xl font-semibold mt-4">Testers</h3>
-        <ul className="list-disc list-inside text-gray-600">
-          {helpData.credits.testers.map((tester, index) => (
-            <li key={index}>{tester}</li>
-          ))}
-        </ul>
-      </section>
+          <div className='mt-6 flex justify-center'>
+            <a href='' className='w-full'>
+              <button className='w-full bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded'>
+                Go to Top
+              </button>
+            </a>
+          </div>
+        </section>
+      ))}
     </div>
   );
 };
